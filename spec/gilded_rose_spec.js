@@ -15,4 +15,10 @@ describe("Gilded Rose", function() {
     });
   })
 
+  describe("Aged Brie", function() {
+    it("increases its quality from 0 to 1 when a day passes", function() {
+      shop.updateQuality()
+      expect(shop.items[1].quality).toEqual(1)
+    });
+  });
 });
