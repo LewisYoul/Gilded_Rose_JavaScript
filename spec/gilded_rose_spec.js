@@ -6,6 +6,12 @@ describe("Gilded Rose", function() {
     }
   }
 
+  function elevenDaysPass() {
+    for (var i = 0; i < 11; i++) {
+      shop.updateQuality()
+    }
+  }
+
   function oneHundredDaysPass() {
     for (var i = 0; i < 100; i++) {
       shop.updateQuality()
@@ -78,5 +84,13 @@ describe("Gilded Rose", function() {
       sixDaysPass()
       expect(shop.items[7].quality).toEqual(0)
     })
+    it("quality increases by 2 when sellIn is 10 or less", function() {
+      sixDaysPass()
+      expect(shop.items[5].quality).toEqual(27)
+    });
+    it("quality increases by 3 when sellIn is 5 or less", function() {
+      elevenDaysPass()
+      expect(shop.items[5].quality).toEqual(38)
+    });
   });
 });
