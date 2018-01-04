@@ -17,12 +17,13 @@ class Shop {
       sulfuras: 'Sulfuras, Hand of Ragnaros'
     }
     this.MAX_QUALITY = 50
+    this.MIN_QUALITY = 0
   }
 
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name != this.unique.brie && this.items[i].name != this.unique.pass) {
-        if (this.items[i].quality > 0) {
+        if (this.items[i].quality > this.MIN_QUALITY) {
           if (this.items[i].name != this.unique.sulfuras) {
             this.items[i].quality -= 1;
           }
@@ -50,7 +51,7 @@ class Shop {
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != this.unique.brie) {
           if (this.items[i].name != this.unique.pass) {
-            if (this.items[i].quality > 0) {
+            if (this.items[i].quality > this.MIN_QUALITY) {
               if (this.items[i].name != this.unique.sulfuras) {
                 this.items[i].quality  -= 1;
               }
