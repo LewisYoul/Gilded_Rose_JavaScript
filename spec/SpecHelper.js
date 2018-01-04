@@ -9,4 +9,5 @@ beforeEach(function() {
   items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49));
   items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49));
   shop = new Shop(items)
+
 });
