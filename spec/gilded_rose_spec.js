@@ -14,8 +14,4 @@ describe("Gilded Rose", function() {
     expect(shop.items[0].quality).toEqual(19)
   });
 
-  it("should equal 4", function() {
-    expect(2 + 2).toEqual(4);
-  });
-
 });
