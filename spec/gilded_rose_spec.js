@@ -4,14 +4,15 @@ describe("Gilded Rose", function() {
     expect(shop.items instanceof Array).toEqual(true)
   });
 
-  it("reduces the sellIn value of the first item in the array", function() {
-    shop.updateQuality()
-    expect(shop.items[0].sellIn).toEqual(9)
-  });
-
-  it("reduces the quality value of the first item in the array", function() {
-    shop.updateQuality()
-    expect(shop.items[0].quality).toEqual(19)
-  });
+  describe("+5 Dexterity Vest", function() {
+    it("reduces its sellIn from 5 to 4 when day passes", function() {
+      shop.updateQuality()
+      expect(shop.items[0].sellIn).toEqual(4)
+    });
+    it("reduces its quality from 20 to 19 when day passes", function() {
+      shop.updateQuality()
+      expect(shop.items[0].quality).toEqual(19)
+    });
+  })
 
 });
