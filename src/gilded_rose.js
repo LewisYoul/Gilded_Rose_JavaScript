@@ -18,6 +18,7 @@ class Shop {
     }
     this.MAX_QUALITY = 50
     this.MIN_QUALITY = 0
+    this.SELL_BY_DATE = 0
   }
 
   updateQuality() {
@@ -48,7 +49,7 @@ class Shop {
       if (this.items[i].name != this.unique.sulfuras) {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
-      if (this.items[i].sellIn < 0) {
+      if (this.items[i].sellIn < this.SELL_BY_DATE) {
         if (this.items[i].name != this.unique.brie) {
           if (this.items[i].name != this.unique.pass) {
             if (this.items[i].quality > this.MIN_QUALITY) {
