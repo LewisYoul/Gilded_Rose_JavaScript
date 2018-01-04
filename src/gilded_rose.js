@@ -19,11 +19,15 @@ class Shop {
     this.MAX_QUALITY = 50
     this.MIN_QUALITY = 0
     this.SELL_BY_DATE = 0
+    this.INCREMENT = 1
+  }
+
+  increaseQuality(item, increment) {
+    item.quality += increment
   }
 
   updateQuality() {
     var self = this
-    console.log(self)
     self.items.forEach(function(item) {
       if (item.name != self.unique.brie && item.name != self.unique.pass) {
         if (item.quality > self.MIN_QUALITY) {
@@ -33,16 +37,16 @@ class Shop {
         }
       } else {
         if (item.quality < self.MAX_QUALITY) {
-          item.quality += 1;
+          self.increaseQuality(item, self.INCREMENT)
           if (item.name == self.unique.pass) {
             if (item.sellIn < 11) {
               if (item.quality < self.MAX_QUALITY) {
-                item.quality += 1;
+                self.increaseQuality(item, self.INCREMENT)
               }
             }
             if (item.sellIn < 6) {
               if (item.quality < self.MAX_QUALITY) {
-                item.quality += 1;
+                self.increaseQuality(item, self.INCREMENT)
               }
             }
           }
@@ -64,7 +68,7 @@ class Shop {
           }
         } else {
           if (item.quality < self.MAX_QUALITY) {
-            item.quality  += 1;
+            self.increaseQuality(item, self.INCREMENT)
           }
         }
       }
