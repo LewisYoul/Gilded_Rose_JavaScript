@@ -22,53 +22,53 @@ class Shop {
     this.INCREMENT = 1
   }
 
-  increaseQuality(item, increment) {
+  _increaseQuality(item, increment) {
     item.quality += increment
+  }
+
+  _decreaseQuality(item, increment) {
+    item.quality -= increment
   }
 
   updateQuality() {
     var self = this
     self.items.forEach(function(item) {
-      if (item.name != self.unique.brie && item.name != self.unique.pass) {
-        if (item.quality > self.MIN_QUALITY) {
-          if (item.name != self.unique.sulfuras) {
-            item.quality -= 1;
-          }
-        }
+      if (item.name != self.unique.brie && item.name != self.unique.pass && item.quality > self.MIN_QUALITY && item.name != self.unique.sulfuras) {
+        self._decreaseQuality(item, self.INCREMENT);
       } else {
         if (item.quality < self.MAX_QUALITY) {
-          self.increaseQuality(item, self.INCREMENT)
+          self._increaseQuality(item, self.INCREMENT)
           if (item.name == self.unique.pass) {
             if (item.sellIn < 11) {
               if (item.quality < self.MAX_QUALITY) {
-                self.increaseQuality(item, self.INCREMENT)
+                self._increaseQuality(item, self.INCREMENT)
               }
             }
             if (item.sellIn < 6) {
               if (item.quality < self.MAX_QUALITY) {
-                self.increaseQuality(item, self.INCREMENT)
+                self._increaseQuality(item, self.INCREMENT)
               }
             }
           }
         }
       }
       if (item.name != self.unique.sulfuras) {
-        item.sellIn = item.sellIn - 1;
+        item.sellIn -= 1;
       }
       if (item.sellIn < self.SELL_BY_DATE) {
         if (item.name != self.unique.brie) {
           if (item.name != self.unique.pass) {
             if (item.quality > self.MIN_QUALITY) {
               if (item.name != self.unique.sulfuras) {
-                item.quality  -= 1;
+                self._decreaseQuality(item, self.INCREMENT);
               }
             }
           } else {
-            item.quality = item.quality - item.quality;
+            item.quality -= item.quality;
           }
         } else {
           if (item.quality < self.MAX_QUALITY) {
-            self.increaseQuality(item, self.INCREMENT)
+            self._increaseQuality(item, self.INCREMENT)
           }
         }
       }
