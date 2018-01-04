@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "test": "karma start test/karma.conf.js"
+  },
+  "dependencies": {
+    "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
+    "karma-coverage": "^1.1.1",
+    "karma-es5-shim": "0.0.4",
+    "karma-es6-shim": "^1.0.0",
+    "phantomjs25-beta": "^1.0.17"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "jasmine-core": "^2.8.0",
+    "karma": "^2.0.0",
+    "karma-babel-preprocessor": "^7.0.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-requirejs": "^1.1.0",
+    "phantomjs-prebuilt": "^2.1.16"
+  }
+}
