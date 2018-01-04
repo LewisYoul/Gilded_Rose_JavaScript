@@ -22,52 +22,54 @@ class Shop {
   }
 
   updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != this.unique.brie && this.items[i].name != this.unique.pass) {
-        if (this.items[i].quality > this.MIN_QUALITY) {
-          if (this.items[i].name != this.unique.sulfuras) {
-            this.items[i].quality -= 1;
+    var self = this
+    console.log(self)
+    self.items.forEach(function(item) {
+      if (item.name != self.unique.brie && item.name != self.unique.pass) {
+        if (item.quality > self.MIN_QUALITY) {
+          if (item.name != self.unique.sulfuras) {
+            item.quality -= 1;
           }
         }
       } else {
-        if (this.items[i].quality < this.MAX_QUALITY) {
-          this.items[i].quality += 1;
-          if (this.items[i].name == this.unique.pass) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < this.MAX_QUALITY) {
-                this.items[i].quality += 1;
+        if (item.quality < self.MAX_QUALITY) {
+          item.quality += 1;
+          if (item.name == self.unique.pass) {
+            if (item.sellIn < 11) {
+              if (item.quality < self.MAX_QUALITY) {
+                item.quality += 1;
               }
             }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < this.MAX_QUALITY) {
-                this.items[i].quality += 1;
+            if (item.sellIn < 6) {
+              if (item.quality < self.MAX_QUALITY) {
+                item.quality += 1;
               }
             }
           }
         }
       }
-      if (this.items[i].name != this.unique.sulfuras) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+      if (item.name != self.unique.sulfuras) {
+        item.sellIn = item.sellIn - 1;
       }
-      if (this.items[i].sellIn < this.SELL_BY_DATE) {
-        if (this.items[i].name != this.unique.brie) {
-          if (this.items[i].name != this.unique.pass) {
-            if (this.items[i].quality > this.MIN_QUALITY) {
-              if (this.items[i].name != this.unique.sulfuras) {
-                this.items[i].quality  -= 1;
+      if (item.sellIn < self.SELL_BY_DATE) {
+        if (item.name != self.unique.brie) {
+          if (item.name != self.unique.pass) {
+            if (item.quality > self.MIN_QUALITY) {
+              if (item.name != self.unique.sulfuras) {
+                item.quality  -= 1;
               }
             }
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            item.quality = item.quality - item.quality;
           }
         } else {
-          if (this.items[i].quality < this.MAX_QUALITY) {
-            this.items[i].quality  += 1;
+          if (item.quality < self.MAX_QUALITY) {
+            item.quality  += 1;
           }
         }
       }
-    }
+    });
 
-    return this.items;
+    return self.items;
   }
 }
