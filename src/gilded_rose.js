@@ -33,7 +33,8 @@ class Shop {
   updateQuality() {
     var self = this
     self.items.forEach(function(item) {
-      if (item.name != self.unique.brie && item.name != self.unique.pass && item.quality > self.MIN_QUALITY && item.name != self.unique.sulfuras) {
+      // below line checks whether the item is unique as well as whether its quality is above zero - if so it decreases quality by 1
+      if (item.name != self.unique.brie && item.name != self.unique.pass && item.name != self.unique.sulfuras && item.quality > self.MIN_QUALITY) {
         self._decreaseQuality(item, self.INCREMENT);
       } else {
         if (item.quality < self.MAX_QUALITY) {
