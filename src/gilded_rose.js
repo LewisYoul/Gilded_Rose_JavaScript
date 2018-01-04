@@ -33,22 +33,19 @@ class Shop {
   updateQuality() {
     var self = this
     self.items.forEach(function(item) {
-      // below line checks whether the item is unique as well as whether its quality is above zero - if so it decreases quality by 1
+      // checks whether the item is unique as well as whether its quality is above zero - if so it decreases quality by 1
       if (item.name != self.unique.brie && item.name != self.unique.pass && item.name != self.unique.sulfuras && item.quality > self.MIN_QUALITY) {
         self._decreaseQuality(item, self.INCREMENT);
       } else {
+        // next line increases quality by 1 because remaining items are all unique (no check for sulfaras?)
         if (item.quality < self.MAX_QUALITY) {
           self._increaseQuality(item, self.INCREMENT)
-          if (item.name == self.unique.pass) {
-            if (item.sellIn < 11) {
-              if (item.quality < self.MAX_QUALITY) {
-                self._increaseQuality(item, self.INCREMENT)
-              }
-            }
-            if (item.sellIn < 6) {
-              if (item.quality < self.MAX_QUALITY) {
-                self._increaseQuality(item, self.INCREMENT)
-              }
+          //  if the item is a pass and its sellIn is < 11 increase quality
+          if (item.name == self.unique.pass && item.sellIn < 11 && item.quality < self.MAX_QUALITY) {
+            self._increaseQuality(item, self.INCREMENT)
+            // if pass sells in 5 days or less increase quality
+            if (item.sellIn < 6 && item.quality < self.MAX_QUALITY) {
+              self._increaseQuality(item, self.INCREMENT)
             }
           }
         }
