@@ -1,5 +1,11 @@
 describe("Gilded Rose", function() {
 
+  function sixDaysPass() {
+    for (var i = 0; i < 6; i++) {
+      shop.updateQuality()
+    }
+  }
+
   function oneHundredDaysPass() {
     for (var i = 0; i < 100; i++) {
       shop.updateQuality()
@@ -10,7 +16,7 @@ describe("Gilded Rose", function() {
     expect(shop.items instanceof Array).toEqual(true)
   });
 
-  describe("+5 Dexterity Vest", function() {
+  describe("+5 Dexterity Vest (generic item)", function() {
     it("reduces its sellIn from 5 to 4 when day passes", function() {
       shop.updateQuality()
       expect(shop.items[0].sellIn).toEqual(4)
@@ -53,5 +59,24 @@ describe("Gilded Rose", function() {
       shop.updateQuality()
       expect(shop.items[4].quality).toEqual(80)
     });
+  });
+
+  describe("Backstage passes", function() {
+    it("sellIn value decreases from 15 to 14 when day passes", function() {
+      shop.updateQuality()
+      expect(shop.items[5].sellIn).toEqual(14)
+    });
+    it("quality value increases from 20 to 21 when day passes", function() {
+      shop.updateQuality()
+      expect(shop.items[5].quality).toEqual(21)
+    });
+    it("quality value cannot go over 50", function() {
+      shop.updateQuality()
+      expect(shop.items[6].quality).toEqual(50)
+    });
+    it("quality drops to 0 after sellIn reaches 0", function() {
+      sixDaysPass()
+      expect(shop.items[7].quality).toEqual(0)
+    })
   });
 });
