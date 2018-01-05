@@ -4,5 +4,6 @@ class Update {
 
   updateGeneric(item) {
     item.quality -= 1
+    item.sellIn -= 1
   }
 }

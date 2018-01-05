@@ -5,5 +5,9 @@ describe("Update", function() {
       update.updateGeneric(genericItem)
       expect(genericItem.quality).toEqual(19)
     });
+    it("reduces the sellIn property by 1", function() {
+      update.updateGeneric(genericItem)
+      expect(genericItem.sellIn).toEqual(4)
+    });
   });
 });
