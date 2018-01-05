@@ -9,5 +9,9 @@ describe("Update", function() {
       update.updateGeneric(genericItem)
       expect(genericItem.sellIn).toEqual(4)
     });
+    it("reduces the quality by two if passed sell by date", function() {
+      update.updateGeneric(genericItemsellInZero)
+      expect(genericItemsellInZero.quality).toEqual(0)
+    });
   });
 });

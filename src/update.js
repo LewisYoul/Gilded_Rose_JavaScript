@@ -3,17 +3,22 @@ class Update {
   }
 
   updateGeneric(item) {
-    this._reduceQualityByOne(item)
-    this._reduceSellInByOne(item)
+    this._reduceSellIn(item)
+    this._reduceQuality(item)
   }
 
   // PRIVATE
 
-  _reduceQualityByOne(item) {
-    item.quality -= 1
-  }
-
-  _reduceSellInByOne(item) {
+  _reduceSellIn(item) {
     item.sellIn -= 1
   }
+
+  _reduceQuality(item) {
+    if (item.sellIn >= 0) {
+      item.quality -= 1
+    } else {
+      item.quality -= 2
+    }
+  }
+
 }
