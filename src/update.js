@@ -11,6 +11,7 @@ class Update {
 
   updateBrie(item) {
     this._reduceSellIn(item)
+    item.quality += 1
   }
 
   // PRIVATE

@@ -25,5 +25,9 @@ describe("Update", function() {
       update.updateBrie(brie)
       expect(brie.sellIn).toEqual(1)
     });
+    it("increases the quality by one", function() {
+      update.updateBrie(brie)
+      expect(brie.quality).toEqual(1)
+    });
   });
 });
