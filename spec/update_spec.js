@@ -1,4 +1,19 @@
+class MockItem {
+  constructor(name, sellIn, quality){
+    this.name = name;
+    this.sellIn = sellIn;
+    this.quality = quality;
+  }
+}
+
 describe("Update", function() {
+
+  beforeEach(function() {
+    update = new Update()
+    genericItem = new MockItem('+5 Dexterity Vest', 5, 20)
+    genericItemsellInZero = new MockItem('+5 Dexterity Vest', 0, 2)
+    brie = new MockItem('Aged Brie', 2, 0)
+  });
 
   function sixtyDaysPass() {
     for (var i = 0; i < 60; i ++) {
@@ -40,4 +55,11 @@ describe("Update", function() {
       expect(brie.quality).toEqual(50)
     });
   });
+
+  // describe("#updatePass", function() {
+  //   it("increases quality by 1 if sellIn is over 10", function() {
+  //
+  //   });
+  // });
+
 });
