@@ -16,6 +16,8 @@ class Update {
     }
   }
 
+
+
   // PRIVATE
 
   _reduceSellIn(item) {
