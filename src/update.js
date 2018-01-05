@@ -11,7 +11,9 @@ class Update {
 
   updateBrie(item) {
     this._reduceSellIn(item)
-    item.quality += 1
+    if (item.quality < 50) {
+      item.quality += 1
+    }
   }
 
   // PRIVATE

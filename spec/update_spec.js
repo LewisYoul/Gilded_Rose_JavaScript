@@ -1,5 +1,11 @@
 describe("Update", function() {
 
+  function sixtyDaysPass() {
+    for (var i = 0; i < 60; i ++) {
+      update.updateBrie(brie)
+    }
+  }
+
   describe("#updateGeneric", function() {
     it("reduces the sellIn property by 1", function() {
       update.updateGeneric(genericItem)
@@ -28,6 +34,10 @@ describe("Update", function() {
     it("increases the quality by one", function() {
       update.updateBrie(brie)
       expect(brie.quality).toEqual(1)
+    });
+    it("quality can't go above 50", function() {
+      sixtyDaysPass()
+      expect(brie.quality).toEqual(50)
     });
   });
 });
