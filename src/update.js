@@ -9,6 +9,10 @@ class Update {
     }
   }
 
+  updateBrie(item) {
+    this._reduceSellIn(item)
+  }
+
   // PRIVATE
 
   _reduceSellIn(item) {

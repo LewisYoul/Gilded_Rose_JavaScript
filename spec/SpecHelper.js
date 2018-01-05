@@ -22,4 +22,5 @@ beforeEach(function() {
   update = new Update()
   genericItem = new MockItem('+5 Dexterity Vest', 5, 20)
   genericItemsellInZero = new MockItem('+5 Dexterity Vest', 0, 2)
+  brie = new MockItem('Aged Brie', 2, 0)
 });
