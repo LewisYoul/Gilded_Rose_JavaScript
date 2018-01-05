@@ -4,7 +4,9 @@ class Update {
 
   updateGeneric(item) {
     this._reduceSellIn(item)
-    this._reduceQuality(item)
+    if (item.quality > 0) {
+      this._reduceQuality(item)
+    }
   }
 
   // PRIVATE

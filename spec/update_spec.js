@@ -13,5 +13,10 @@ describe("Update", function() {
       update.updateGeneric(genericItemsellInZero)
       expect(genericItemsellInZero.quality).toEqual(0)
     });
+    it("doesn't reduce quality if the quality is already zero",function() {
+      update.updateGeneric(genericItemsellInZero)
+      update.updateGeneric(genericItemsellInZero)
+      expect(genericItemsellInZero.quality).toEqual(0)
+    });
   });
 });
