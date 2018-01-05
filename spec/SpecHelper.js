@@ -18,4 +18,7 @@ beforeEach(function() {
   items.push(new MockItem('Backstage passes to a TAFKAL80ETC concert', 5, 49));
   shop = new Shop(items)
 
+
+  update = new Update()
+  genericItem = new MockItem('+5 Dexterity Vest', 5, 20)
 });
