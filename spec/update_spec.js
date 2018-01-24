@@ -13,6 +13,9 @@ describe("Update", function() {
     genericItem = new MockItem('+5 Dexterity Vest', 5, 20)
     genericItemsellInZero = new MockItem('+5 Dexterity Vest', 0, 2)
     brie = new MockItem('Aged Brie', 2, 0)
+    passSellInOverTen = new MockItem('Pass', 15, 5)
+    passSellInUnderTen = new MockItem('Pass', 10, 5)
+    passSellInUnderFive = new MockItem('Pass', 5, 5)
   });
 
   function sixtyDaysPass() {
@@ -56,10 +59,23 @@ describe("Update", function() {
     });
   });
 
-  // describe("#updatePass", function() {
-  //   it("increases quality by 1 if sellIn is over 10", function() {
-  //
-  //   });
-  // });
+  describe("#updatePass", function() {
+    it("reduces the sellIn by one", function() {
+      update.updatePass(passSellInOverTen)
+      expect(passSellInOverTen.sellIn).toEqual(14)
+    });
+    it("increases quality by 1 if sellIn is over 10", function() {
+      update.updatePass(passSellInOverTen)
+      expect(passSellInOverTen.quality).toEqual(6)
+    });
+    it("increases quality by 2 if sellIn is 10 or under", function() {
+      update.updatePass(passSellInUnderTen)
+      expect(passSellInUnderTen.quality).toEqual(7)
+    });
+    it("increases quality by 3 if sellIn is 5 or under", function() {
+      update.updatePass(passSellInUnderFive)
+      expect(passSellInUnderFive.quality).toEqual(8)
+    });
+  });
 
 });
