@@ -16,6 +16,7 @@ describe("Update", function() {
     passSellInOverTen = new MockItem('Pass', 15, 5)
     passSellInUnderTen = new MockItem('Pass', 10, 5)
     passSellInUnderFive = new MockItem('Pass', 5, 5)
+    passSellInZero = new MockItem('Pass', 0, 5)
   });
 
   function sixtyDaysPass() {
@@ -76,6 +77,10 @@ describe("Update", function() {
       update.updatePass(passSellInUnderFive)
       expect(passSellInUnderFive.quality).toEqual(8)
     });
+    it("sets the quality to zero if the sellIn is less than zero", function() {
+      update.updatePass(passSellInZero)
+      expect(passSellInZero.quality).toEqual(0)
+    })
   });
 
 });
