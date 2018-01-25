@@ -9,7 +9,8 @@ class Item {
 const MAX_QUALITY = 50
 
 class Shop {
-  constructor(items=[]){
+  constructor(items=[], update = new Update()){
+    this.update = update
     this.items = items;
     this.unique = {
       brie: 'Aged Brie',
@@ -33,44 +34,76 @@ class Shop {
   updateQuality() {
     var self = this
     self.items.forEach(function(item) {
-      // checks whether the item is unique as well as whether its quality is above zero - if so it decreases quality by 1
-      if (item.name != self.unique.brie && item.name != self.unique.pass && item.name != self.unique.sulfuras && item.quality > self.MIN_QUALITY) {
-        self._decreaseQuality(item, self.INCREMENT);
+      if (item.name === self.unique.brie) {
+        self.update.updateBrie(item)
+      } else if (item.name === self.unique.pass) {
+        self.update.updatePass(item)
+      } else if (item.name === self.unique.sulfuras) {
+        console.log("sulfuras")
       } else {
-        // next line increases quality by 1 because remaining items are all unique (no check for sulfuras?)
-        if (item.quality < self.MAX_QUALITY) {
-          self._increaseQuality(item, self.INCREMENT)
-          //  if the item is a pass and its sellIn is < 11 increase quality
-          if (item.name == self.unique.pass && item.sellIn < 11 && item.quality < self.MAX_QUALITY) {
-            self._increaseQuality(item, self.INCREMENT)
-            // if pass, sells in 5 days or less increase quality
-            if (item.sellIn < 6 && item.quality < self.MAX_QUALITY) {
-              self._increaseQuality(item, self.INCREMENT)
-            }
-          }
-        }
-      }
-      // reduces the sellIn value if the item is not sulfuras
-      if (item.name != self.unique.sulfuras) {
-        item.sellIn -= 1;
-      }
-      // this section decreases the quality by 1 extra if the item is passed its sell by date
-      if (item.sellIn < self.SELL_BY_DATE) {
-        if (item.name != self.unique.brie) {
-          if (item.name != self.unique.pass) {
-            if (item.quality > self.MIN_QUALITY && item.name != self.unique.sulfuras) {
-                self._decreaseQuality(item, self.INCREMENT);
-            }
-          } else if (item.quality < self.MAX_QUALITY) {
-            self._increaseQuality(item, self.INCREMENT)
-          } else {
-            // set the item quality to zero
-            item.quality -= item.quality;
-          }
-        }
+        self.update.updateGeneric(item)
       }
     });
 
     return self.items;
   }
+}
+
+class Update {
+  constructor() {
+  }
+
+  updateGeneric(item) {
+    this._reduceSellIn(item)
+    if (item.quality > 0) {
+      this._reduceQuality(item)
+    }
+  }
+
+  updateBrie(item) {
+    this._reduceSellIn(item)
+    if (item.quality < 50) {
+      item.quality += 1
+    }
+  }
+
+  updatePass(item) {
+    this._reduceSellIn(item)
+    if (item.sellIn < 0) {
+      item.quality = 0
+    } else if (item.sellIn <= 5) {
+      if ((item.quality + 3) > 50) {
+        item.quality = 50
+      } else {
+        item.quality += 3
+      }
+    } else if (item.sellIn <= 10) {
+      if ((item.quality + 2) > 50) {
+        item.quality = 50
+      } else {
+        item.quality += 2
+      }
+    } else {
+      if ((item.quality + 1) > 50) {
+        item.quality = 50
+      } else {
+        item.quality += 1
+      }
+    }
+  }
+
+  // PRIVATE
+
+  _reduceSellIn(item) {
+    item.sellIn -= 1
+  }
+
+  _reduceQuality(item) {
+    if (item.sellIn >= 0) {
+      item.quality -= 1
+    } else {
+      item.quality -= 2
+    }
+  }
+
 }

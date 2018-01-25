@@ -1,4 +1,14 @@
+class MockItem {
+  constructor(name, sellIn, quality){
+    this.name = name;
+    this.sellIn = sellIn;
+    this.quality = quality;
+  }
+}
 
+class MockShop {
+
+}
 
 beforeEach(function() {
   items = []
@@ -10,6 +20,7 @@ beforeEach(function() {
   items.push(new MockItem('Backstage passes to a TAFKAL80ETC concert', 15, 20));
   items.push(new MockItem('Backstage passes to a TAFKAL80ETC concert', 10, 49));
   items.push(new MockItem('Backstage passes to a TAFKAL80ETC concert', 5, 49));
+  items.push(new MockItem('Backstage passes to a TAFKAL80ETC concert', 5, 1));
   shop = new Shop(items)
 
 });

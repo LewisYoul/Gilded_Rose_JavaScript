@@ -90,7 +90,7 @@ describe("Gilded Rose", function() {
     });
     it("quality increases by 3 when sellIn is 5 or less", function() {
       elevenDaysPass()
-      expect(shop.items[5].quality).toEqual(38)
+      expect(shop.items[8].quality).toEqual(4)
     });
   });
 });

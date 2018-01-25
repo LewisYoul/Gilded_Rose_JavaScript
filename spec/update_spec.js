@@ -1,10 +1,3 @@
-class MockItem {
-  constructor(name, sellIn, quality){
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
 
 describe("Update", function() {
 
@@ -81,6 +74,21 @@ describe("Update", function() {
       update.updatePass(passSellInZero)
       expect(passSellInZero.quality).toEqual(0)
     })
+    it('quality cannot be above 50', function() {
+      pass50 = new MockItem('Pass', 20, 50)
+      update.updatePass(pass50)
+      expect(pass50.quality).toEqual(50)
+    });
+    it('quality cannot be above 50 when sellIn under 10', function() {
+      pass49 = new MockItem('Pass', 9, 49)
+      update.updatePass(pass49)
+      expect(pass50.quality).toEqual(50)
+    });
+    it('quality cannot be above 50 when sellIn under 5', function() {
+      pass49 = new MockItem('Pass', 4, 49)
+      update.updatePass(pass49)
+      expect(pass50.quality).toEqual(50)
+    });
   });
 
 });
